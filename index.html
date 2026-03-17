@@ -1,13 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Data Viz Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Francisco Crime Analysis</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #e5e7eb;
+        }
+
+        header {
+            width: 100%;
+            padding: 60px 20px;
+            text-align: center;
+            background: #020617;
+            border-bottom: 2px solid #16c79a;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #16c79a;
+        }
+
+        header p {
+            max-width: 700px;
+            margin: 15px auto 0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #cbd5f5;
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #16c79a;
+            box-shadow: 0 10px 20px rgba(22, 199, 154, 0.2);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #16c79a;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #cbd5f5;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #16c79a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            margin-top: 50px;
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Crime data evolution over PD in SF</h1>
-    <p>This site shows the evolution and stats of how crime data has evolved over time for PD in San Francisco.</p>
-    <img src="images/CrimeProbByPD.png" alt="Yearly crime trends in SF" style="max-width: 100%;">
-    <iframe src="images/crime_hourly_interactive.html" width="100%" height="600" frameborder="0"></iframe>
-    <iframe src="images/sf_crime_heatmap.html" width="100%" height="600" frameborder="0"></iframe>
+
+<header>
+    <h1>San Francisco Crime 2003-2025</h1>
+    <p>
+        This project explores long-term crime trends across San Francisco using public datasets and interactive visualizations.
+        The goal is to uncover patterns across districts, time, and categories to better understand urban dynamics.
+    </p>
+</header>
+
+<div class="container">
+
+    <!-- CARD GRID -->
+    <div class="grid">
+        <div class="card">
+            <h3>Crime by Police District</h3>
+            <p>Visual overview of how crime has evolved across SF districts.</p>
+            <a href="#pd">View analysis →</a>
+        </div>
+
+        <div class="card">
+            <h3>Hourly Crime Patterns</h3>
+            <p>Interactive chart showing crime distribution throughout the day.</p>
+            <a href="#hourly">Explore →</a>
+        </div>
+
+        <div class="card">
+            <h3>Crime Heatmap</h3>
+            <p>Geospatial heatmap highlighting crime density across the city.</p>
+            <a href="#heatmap">View map →</a>
+        </div>
+    </div>
+
+    <!-- SECTION: PD -->
+    <div class="section" id="pd">
+        <h2>Crime Trends by Police District</h2>
+        <img src="images/CrimeProbByPD.png" alt="Crime trends by district">
+    </div>
+
+    <!-- SECTION: HOURLY -->
+    <div class="section" id="hourly">
+        <h2>Hourly Crime Distribution</h2>
+        <iframe src="images/crime_hourly_interactive.html" height="600"></iframe>
+    </div>
+
+    <!-- SECTION: HEATMAP -->
+    <div class="section" id="heatmap">
+        <h2>Crime Density Heatmap</h2>
+        <iframe src="images/sf_crime_heatmap.html" height="600"></iframe>
+    </div>
+
+</div>
+
 </body>
 </html>
