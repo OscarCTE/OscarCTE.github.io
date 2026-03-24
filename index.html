@@ -14,140 +14,97 @@
         margin: 0;
         font-family: Arial, sans-serif;
         background: #0f172a;
-        color: #e5e7eb;
+        color: #cbd5f5; /* default text = light grey */
     }
 
     /* NAVBAR */
     nav {
         position: sticky;
         top: 0;
-        background: rgba(2, 6, 23, 0.8);
+        background: rgba(2, 6, 23, 0.85);
         backdrop-filter: blur(10px);
-        padding: 15px 20px;
+        padding: 15px 30px;
         display: flex;
-        justify-content: center;
-        gap: 30px;
+        justify-content: space-between;
+        align-items: center;
         z-index: 1000;
     }
 
-    nav a {
+    .nav-left {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    .nav-right {
+        display: flex;
+        gap: 25px;
+    }
+
+    .nav-right a {
         color: #cbd5f5;
         text-decoration: none;
         font-weight: bold;
         transition: 0.3s;
     }
 
-    nav a:hover {
-        color: #16c79a;
+    .nav-right a:hover {
+        color: #ffffff;
     }
 
     /* HEADER */
     header {
         text-align: center;
-        padding: 80px 20px 40px;
+        padding: 100px 20px 60px;
     }
 
     header h1 {
         margin: 0;
         font-size: 2.8rem;
-        color: #16c79a;
+        color: #ffffff; /* headline white */
     }
 
     header p {
         max-width: 700px;
         margin: 20px auto 0;
-        color: #cbd5f5;
-        line-height: 1.6;
+        line-height: 1.7;
     }
 
     /* CONTAINER */
     .container {
-        max-width: 1100px;
+        max-width: 800px;
         margin: auto;
         padding: 20px;
     }
 
-    /* SECTION LAYOUT */
+    /* ARTICLE SECTIONS */
     .section {
-        display: flex;
-        align-items: center;
-        gap: 40px;
         margin: 80px 0;
-        flex-wrap: wrap;
     }
 
-    .section:nth-child(even) {
-        flex-direction: row-reverse;
+    .section h2 {
+        color: #ffffff;
+        margin-bottom: 15px;
     }
 
-    .text {
-        flex: 1;
-        min-width: 280px;
-    }
-
-    .text h2 {
-        color: #16c79a;
-        margin-bottom: 10px;
-    }
-
-    .text p {
-        color: #cbd5f5;
-        line-height: 1.6;
-    }
-
-    .visual {
-        flex: 1;
-        min-width: 280px;
+    .section p {
+        line-height: 1.7;
+        margin-bottom: 20px;
     }
 
     img, iframe {
         width: 100%;
         border-radius: 15px;
+        margin-top: 10px;
         box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
     iframe {
-        height: 400px;
-    }
-
-    /* CARD GRID (kept but cleaner) */
-    .grid {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-top: 40px;
-    }
-
-    .card {
-        background: rgba(255,255,255,0.02);
-        border-radius: 12px;
-        padding: 20px;
-        width: 250px;
-        transition: 0.3s;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        background: rgba(22,199,154,0.08);
-    }
-
-    .card h3 {
-        color: #16c79a;
-    }
-
-    .card a {
-        color: #16c79a;
-        text-decoration: none;
-        font-weight: bold;
+        height: 500px;
     }
 
     /* MOBILE */
     @media (max-width: 700px) {
-        .section {
-            flex-direction: column !important;
-        }
-
         header h1 {
             font-size: 2rem;
         }
@@ -159,83 +116,55 @@
 
 <!-- NAVBAR -->
 <nav>
-    <a href="#pd">Districts</a>
-    <a href="#hourly">Hourly</a>
-    <a href="#heatmap">Heatmap</a>
+    <div class="nav-left">SF Crime Portfolio</div>
+
+    <div class="nav-right">
+        <a href="#pd">Districts</a>
+        <a href="#hourly">Hourly</a>
+        <a href="#heatmap">Heatmap</a>
+    </div>
 </nav>
 
 <!-- HEADER -->
 <header>
     <h1>San Francisco Crime 2003–2025</h1>
     <p>
-        Explore long-term crime patterns across San Francisco using interactive visualizations.
-        Navigate between sections to uncover how crime varies by district, time, and location.
+        This project explores long-term crime patterns across San Francisco using public datasets and interactive visualizations.
+        The goal is to uncover trends across districts, time, and geography to better understand urban dynamics.
     </p>
-
-    <!-- QUICK CARDS -->
-    <div class="grid">
-        <div class="card">
-            <h3>Police Districts</h3>
-            <p>Compare crime trends across districts.</p>
-            <a href="#pd">Go →</a>
-        </div>
-
-        <div class="card">
-            <h3>Hourly Patterns</h3>
-            <p>Understand crime distribution during the day.</p>
-            <a href="#hourly">Go →</a>
-        </div>
-
-        <div class="card">
-            <h3>Heatmap</h3>
-            <p>See where crime is concentrated geographically.</p>
-            <a href="#heatmap">Go →</a>
-        </div>
-    </div>
 </header>
 
 <div class="container">
 
     <!-- PD -->
     <div class="section" id="pd">
-        <div class="text">
-            <h2>Crime by Police District</h2>
-            <p>
-                This visualization shows how crime patterns differ across San Francisco’s police districts.
-                Some areas consistently report higher activity, while others fluctuate more over time.
-            </p>
-        </div>
-        <div class="visual">
-            <img src="images/CrimeProbByPD.png" alt="Crime trends by district">
-        </div>
+        <h2>Crime by Police District</h2>
+        <p>
+            Crime varies significantly across San Francisco’s police districts. 
+            This visualization highlights how different areas evolve over time,
+            revealing both persistent hotspots and changing trends.
+        </p>
+        <img src="images/CrimeProbByPD.png" alt="Crime trends by district">
     </div>
 
     <!-- HOURLY -->
     <div class="section" id="hourly">
-        <div class="text">
-            <h2>Hourly Crime Distribution</h2>
-            <p>
-                Crime is not evenly distributed throughout the day. This interactive chart reveals
-                peak hours and quieter periods, helping identify temporal patterns.
-            </p>
-        </div>
-        <div class="visual">
-            <iframe src="images/crime_hourly_interactive.html"></iframe>
-        </div>
+        <h2>Hourly Crime Distribution</h2>
+        <p>
+            Crime is not evenly distributed throughout the day. This interactive chart
+            reveals peak activity periods and quieter hours, helping identify temporal patterns.
+        </p>
+        <iframe src="images/crime_hourly_interactive.html"></iframe>
     </div>
 
     <!-- HEATMAP -->
     <div class="section" id="heatmap">
-        <div class="text">
-            <h2>Crime Density Heatmap</h2>
-            <p>
-                The heatmap highlights spatial concentrations of crime across the city,
-                revealing hotspots and safer zones.
-            </p>
-        </div>
-        <div class="visual">
-            <iframe src="images/sf_crime_heatmap.html"></iframe>
-        </div>
+        <h2>Crime Density Heatmap</h2>
+        <p>
+            The heatmap visualizes spatial crime density across the city,
+            highlighting clusters of high activity and areas with relatively low crime.
+        </p>
+        <iframe src="images/sf_crime_heatmap.html"></iframe>
     </div>
 
 </div>
