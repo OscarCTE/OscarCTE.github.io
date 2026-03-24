@@ -10,20 +10,36 @@
         scroll-behavior: smooth;
     }
 
+    /* THEME VARIABLES */
+    :root {
+        --bg: #0f172a;
+        --text: #cbd5f5;
+        --title: #ffffff;
+        --nav-bg: rgba(2, 6, 23, 0.85);
+    }
+
+    .light-mode {
+        --bg: #f8fafc;
+        --text: #475569;
+        --title: #0f172a;
+        --nav-bg: rgba(255, 255, 255, 0.8);
+    }
+
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: #0f172a;
-        color: #cbd5f5; /* default text = light grey */
+        background: var(--bg);
+        color: var(--text);
+        transition: 0.3s;
     }
 
     /* NAVBAR */
     nav {
         position: sticky;
         top: 0;
-        background: rgba(2, 6, 23, 0.85);
+        background: var(--nav-bg);
         backdrop-filter: blur(10px);
-        padding: 15px 30px;
+        padding: 15px 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -31,25 +47,46 @@
     }
 
     .nav-left {
-        color: #ffffff;
+        color: var(--title);
         font-weight: bold;
-        font-size: 1rem;
     }
 
     .nav-right {
         display: flex;
-        gap: 25px;
+        align-items: center;
+        gap: 35px; /* more spacing */
     }
 
-    .nav-right a {
-        color: #cbd5f5;
+    .nav-links {
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        color: var(--text);
         text-decoration: none;
         font-weight: bold;
         transition: 0.3s;
     }
 
-    .nav-right a:hover {
-        color: #ffffff;
+    .nav-links a:hover {
+        color: var(--title);
+    }
+
+    /* TOGGLE */
+    .toggle {
+        margin-left: 20px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        border: 1px solid var(--text);
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: 0.3s;
+    }
+
+    .toggle:hover {
+        background: var(--text);
+        color: var(--bg);
     }
 
     /* HEADER */
@@ -59,32 +96,32 @@
     }
 
     header h1 {
-        margin: 0;
-        font-size: 2.8rem;
-        color: #ffffff; /* headline white */
+        color: var(--title);
+        font-size: 3rem;
     }
 
     header p {
-        max-width: 700px;
+        max-width: 800px;
         margin: 20px auto 0;
         line-height: 1.7;
     }
 
-    /* CONTAINER */
+    /* CONTAINER (WIDER) */
     .container {
-        max-width: 800px;
+        max-width: 1000px;
         margin: auto;
         padding: 20px;
     }
 
-    /* ARTICLE SECTIONS */
+    /* SECTIONS */
     .section {
-        margin: 80px 0;
+        margin: 100px 0;
     }
 
     .section h2 {
-        color: #ffffff;
+        color: var(--title);
         margin-bottom: 15px;
+        font-size: 1.8rem;
     }
 
     .section p {
@@ -96,17 +133,16 @@
         width: 100%;
         border-radius: 15px;
         margin-top: 10px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
 
     iframe {
         height: 500px;
     }
 
-    /* MOBILE */
     @media (max-width: 700px) {
         header h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
     }
 </style>
@@ -114,60 +150,64 @@
 
 <body>
 
-<!-- NAVBAR -->
 <nav>
     <div class="nav-left">SF Crime Portfolio</div>
 
     <div class="nav-right">
-        <a href="#pd">Districts</a>
-        <a href="#hourly">Hourly</a>
-        <a href="#heatmap">Heatmap</a>
+        <div class="nav-links">
+            <a href="#trends">Trends</a>
+            <a href="#behavior">Behavior</a>
+            <a href="#spatial">Spatial</a>
+        </div>
+
+        <div class="toggle" onclick="toggleTheme()">🌙 / ☀️</div>
     </div>
 </nav>
 
-<!-- HEADER -->
 <header>
     <h1>San Francisco Crime 2003–2025</h1>
     <p>
         This project explores long-term crime patterns across San Francisco using public datasets and interactive visualizations.
-        The goal is to uncover trends across districts, time, and geography to better understand urban dynamics.
+        The goal is to uncover trends, behavioral patterns, and spatial dynamics.
     </p>
 </header>
 
 <div class="container">
 
-    <!-- PD -->
-    <div class="section" id="pd">
-        <h2>Crime by Police District</h2>
+    <div class="section" id="trends">
+        <h2>Crime Trends</h2>
         <p>
-            Crime varies significantly across San Francisco’s police districts. 
-            This visualization highlights how different areas evolve over time,
-            revealing both persistent hotspots and changing trends.
+            This section explores how crime evolves across different areas over time,
+            highlighting long-term trends and structural patterns.
         </p>
-        <img src="images/CrimeProbByPD.png" alt="Crime trends by district">
+        <img src="images/CrimeProbByPD.png">
     </div>
 
-    <!-- HOURLY -->
-    <div class="section" id="hourly">
-        <h2>Hourly Crime Distribution</h2>
+    <div class="section" id="behavior">
+        <h2>Crime Behavior</h2>
         <p>
-            Crime is not evenly distributed throughout the day. This interactive chart
-            reveals peak activity periods and quieter hours, helping identify temporal patterns.
+            Crime varies throughout the day. This interactive visualization reveals
+            behavioral patterns and peak activity periods.
         </p>
         <iframe src="images/crime_hourly_interactive.html"></iframe>
     </div>
 
-    <!-- HEATMAP -->
-    <div class="section" id="heatmap">
-        <h2>Crime Density Heatmap</h2>
+    <div class="section" id="spatial">
+        <h2>Spatial Patterns</h2>
         <p>
-            The heatmap visualizes spatial crime density across the city,
-            highlighting clusters of high activity and areas with relatively low crime.
+            Crime is unevenly distributed geographically. This heatmap highlights
+            spatial concentrations and underlying urban dynamics.
         </p>
         <iframe src="images/sf_crime_heatmap.html"></iframe>
     </div>
 
 </div>
+
+<script>
+function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+}
+</script>
 
 </body>
 </html>
