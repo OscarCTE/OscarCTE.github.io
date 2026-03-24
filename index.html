@@ -108,7 +108,7 @@
 
     /* CONTAINER (WIDER) */
     .container {
-        max-width: 1000px;
+        max-width: 1150px;
         margin: auto;
         padding: 20px;
     }
@@ -160,7 +160,7 @@
             <a href="#spatial">Spatial</a>
         </div>
 
-        <div class="toggle" onclick="toggleTheme()">🌙 / ☀️</div>
+        <div class="toggle" id="themeToggle" onclick="toggleTheme()">Light mode</div>
     </div>
 </nav>
 
@@ -204,10 +204,19 @@
 </div>
 
 <script>
-function toggleTheme() {
-    document.body.classList.toggle("light-mode");
-}
-</script>
+    function toggleTheme() {
+        const body = document.body;
+        const toggle = document.getElementById("themeToggle");
+    
+        body.classList.toggle("light-mode");
+    
+        if (body.classList.contains("light-mode")) {
+            toggle.textContent = "Dark mode";
+        } else {
+            toggle.textContent = "Light mode";
+        }
+    }
+    </script>
 
 </body>
 </html>
